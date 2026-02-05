@@ -3,22 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Statistical graphs and Descriptive statistics</title>
+<title>Valentine’s Survey</title>
 <style>
-body { margin:0; font-family: Arial,sans-serif; background:#459843; min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px; transition: background 0.5s ease;}
-.card { background:#fff; padding:25px; border-radius:15px; width:100%; max-width:500px; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition: all 0.5s ease, opacity 0.5s ease; opacity:1;}
-.card.fade-out { opacity:0;}
+/* Global styles */
+body {
+  margin:0;
+  font-family: Georgia, 'Times New Roman', serif;
+  background:#459843;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  transition: background 0.5s ease;
+}
+.card {
+  background:#fff;
+  padding:20px;
+  border-radius:15px;
+  width:100%;
+  max-width:500px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.1);
+  transition: all 0.5s ease, opacity 0.5s ease;
+  opacity:1;
+}
+.card.fade-out { opacity:0; }
 h1 { color:#333; font-size:22px; margin-bottom:15px; text-align:center; }
 p { font-size:15px; color:#555; line-height:1.5; }
-button { width:100%; margin-top:12px; padding:12px; border-radius:6px; border:1px solid #333; font-size:15px; cursor:pointer; background:#fff; color:#333; transition: all 0.2s ease;}
-button:hover { background:#f0f0f0;}
+button {
+  width:100%;
+  margin-top:12px;
+  padding:12px;
+  border-radius:6px;
+  border:1px solid #333;
+  font-size:15px;
+  cursor:pointer;
+  background:#fff;
+  color:#333;
+  transition: all 0.2s ease;
+}
+button:hover { background:#f0f0f0; }
 button:active { transform:scale(0.97);}
 button.no { border:1px solid #999; color:#999; cursor:not-allowed; opacity:0.6;}
 button.yes { background:#b22222; color:#fff; border:none;}
 button.yes:hover { background:#ff4d4d;}
 .progress { background:#eee; border-radius:10px; height:8px; margin-bottom:15px; overflow:hidden;}
 .progress-fill { height:100%; background:#b22222; width:0%; transition: width 0.4s ease;}
-@media (max-width:400px){.card{padding:15px;} button{padding:10px; font-size:14px;}}
+img { max-width:100%; height:auto; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2);}
+.flex-container { display:flex; flex-wrap:wrap; gap:15px; align-items:center; }
+.flex-item { flex:1; min-width:200px; text-align:center; }
+@media (max-width:400px){
+  h1 { font-size:20px; }
+  p { font-size:14px; }
+  button { padding:10px; font-size:14px; }
+  .flex-item { min-width:100%; }
+}
 </style>
 </head>
 <body>
@@ -37,42 +76,42 @@ const totalSteps = 9;
 const card = document.getElementById('card');
 const progress = document.getElementById('progress');
 
-function next() {
+function next(){
   step++;
   card.classList.add('fade-out');
   setTimeout(updateCard, 300);
 }
 
-function updateCard() {
+function updateCard(){
   card.classList.remove('fade-out');
-  progress.style.width = ((step)/totalSteps*100) + '%';
+  progress.style.width = ((step)/totalSteps*100)+'%';
 
   // Survey questions
   if(step===1){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Question 1</h1><p>On a scale of 1–5, how confident are you in interpreting charts and graphs?</p>
     <button onclick="next()">1</button><button onclick="next()">2</button><button onclick="next()">3</button>
     <button onclick="next()">4</button><button onclick="next()">5</button>`;
   }
   else if(step===2){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Question 2</h1><p>How often do you notice patterns in daily events?</p>
     <button onclick="next()">Never</button><button onclick="next()">Sometimes</button>
     <button onclick="next()">Often</button><button onclick="next()">Always</button>`;
   }
   else if(step===3){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Question 3</h1><p>Do you enjoy solving problems that involve probabilities?</p>
     <button onclick="next()">Not really</button><button onclick="next()">Sometimes</button><button onclick="next()">Yes, I do</button>`;
   }
   else if(step===4){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Question 4</h1><p>How familiar are you with statistical terms like mean, median, mode, and z-scores?</p>
     <button onclick="next()">Not at all</button><button onclick="next()">A little</button>
     <button onclick="next()">Quite familiar</button><button onclick="next()">Expert</button>`;
   }
   else if(step===5){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Question 5</h1><p>Would you like to participate in more surveys in the future?</p>
     <button onclick="next()">Yes</button><button onclick="next()">Maybe</button><button onclick="next()">No</button>`;
   }
@@ -80,19 +119,19 @@ function updateCard() {
   // Rizz / pre-Valentine
   else if(step===6){
     document.body.style.background="#ff9999"; card.style.background="#ffe6e6";
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Getting to Know You 😉</h1><p>If we were hanging out, what kind of activities would you enjoy most?</p>
     <button onclick="next()">Movies/Chill</button><button onclick="next()">Food Adventures</button>
     <button onclick="next()">Games/Challenges</button>`;
   }
   else if(step===7){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Just Curious 😏</h1><p>Would you say you’re more spontaneous or more planned?</p>
     <button onclick="next()">Spontaneous</button><button onclick="next()">Planned</button>
     <button onclick="next()">A mix of both</button>`;
   }
   else if(step===8){
-    card.innerHTML = `<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
+    card.innerHTML=`<div class="progress"><div class="progress-fill" style="width:${step/totalSteps*100}%"></div></div>
     <h1>Almost There 💌</h1><p>Would you like to go on a fun date with someone who really appreciates you?</p>
     <button onclick="next()">Definitely!</button><button onclick="next()">Maybe</button>`;
   }
@@ -100,16 +139,15 @@ function updateCard() {
   // Valentine ask
   else if(step===9){
     document.body.style.background="#ff6666";
-    card.innerHTML = `
-    <div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;">
-      <div style="flex:1; min-width:200px;">
-        <h1>Happy Valentine’s 💖</h1>
+    card.innerHTML=`<div class="flex-container">
+      <div class="flex-item">
+        <h1>💖 Happy Valentine’s 💖</h1>
         <p>Based on everything so far…<br>Would you go out with me this Valentine’s Day?</p>
         <button class="yes" onclick="yes()">Yes 💘</button>
         <button class="no" disabled>No 🙃</button>
       </div>
-      <div style="flex:1; min-width:150px; text-align:center;">
-        <img src="images/babypic.jfif" alt="Valentine" style="max-width:100%; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+      <div class="flex-item">
+        <img src="images/babypic.jfif" alt="Valentine">
       </div>
     </div>`;
   }
@@ -121,19 +159,17 @@ function yes(){
   card.classList.add('fade-out');
   setTimeout(()=>{
     card.classList.remove('fade-out');
-    card.innerHTML = `
-    <div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;">
-      <div style="flex:1; min-width:200px;">
-        <h1>bawal ka mag no 😄</h1>
-        <p> hi sam!<br>Thank you for being you. I really appreciate all the moments we’ve shared, and I’m sorry for any mistakes I’ve made along the way and sa mga bagay na napafeel ko sayo.<br><br>You’re the person I truly want to ask out this Valentine’s, and I’m so happy you said yes. <br> HAHAHAHAHAHA no
-            choice ka lang pala talaga <br></p>
+    card.innerHTML=`<div class="flex-container">
+      <div class="flex-item">
+        <h1>Bawal ka mag no 💖</h1>
+        <p>I just want to say…<br>Thank you for being you. I really appreciate all the moments we’ve shared, and I’m sorry for any mistakes I’ve made along the way.<br><br>You’re the person I truly want to ask out this Valentine’s, and I’m so happy you said yes. 😌💐</p>
         <button onclick="endMessage()">💌 Close</button>
       </div>
-      <div style="flex:1; min-width:150px; text-align:center;">
-        <img src="images/babypic2.jfif" alt="Appreciation" style="max-width:100%; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+      <div class="flex-item">
+        <img src="images/babypic2.jfif" alt="Appreciation">
       </div>
     </div>`;
-  }, 300);
+  },300);
 }
 
 // Final looking forward
@@ -142,16 +178,13 @@ function endMessage(){
   card.classList.add('fade-out');
   setTimeout(()=>{
     card.classList.remove('fade-out');
-    card.innerHTML = `
-    <div style="display:flex; flex-wrap:wrap; gap:15px; align-items:center;">
-      <div style="flex:1; min-width:200px;">
-        <h1> hi ulit </h1>
-        <p> look oh, our first photobooth together, <br> wala lang kahit last year pa yan <br> it still gives me butterflies by just looking at it. 
-            <br>I just can’t wait to spend Valentine’s Day with you, <br>even kahit hindi exact day, I hope <br> we get to celebrate it. 
-            <br> Let’s make it a day full of fun, smiles, and great memories.<br>Love kita Sam. 💖</p>
+    card.innerHTML=`<div class="flex-container">
+      <div class="flex-item">
+        <h1>Looking Forward 💕</h1>
+        <p>I can’t wait to spend Valentine’s Day with you! 🥰<br>Let’s make it a day full of fun, smiles, and great memories.<br>Love kita Sam.</p>
       </div>
-      <div style="flex:1; min-width:150px; text-align:center;">
-        <img src="images/babypic3.jfif" alt="Looking Forward" style="max-width:100%; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.2);">
+      <div class="flex-item">
+        <img src="images/babypic3.jfif" alt="Looking Forward">
       </div>
     </div>`;
   },300);
